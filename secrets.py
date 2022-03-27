@@ -1,0 +1,6 @@
+token = "BQDgIeNOwAIg2iPVy2_--CHaX5k4HwvNh9UXe8MIZYv4aJh5ZjjIQ-3-nZfsJ3xqzS6-2CWO94b4LiITTQo9cTBICn27_YKFRcM1DCNrGd6jIyQPNv1n4P7yiHJBXP7DhERiIgklqRCLJBJkSOraOmLioz6TahRPQBBQWfttUQdACXi397abnLsGJX4O1QHgTHjwxFeqOggf0MEONjfCvdaHFjTSUuOp3cGil_GjrnrvQQ"
+user_id = "SuperMomo"
+redirect_uri = "https://github.com/TheWhale01"
+refresh_token = "AQCCVp3q2Y1TQO0SQedy1rpAQP5lp1GRAUi-OdCfdtF28U3VcXZicxwSG3Ykg8cMjX45YBqWhZ7IAbkTVmIL8JofThCxEc3Ras-aV0wYzL-6AgJfedk_foXYbe4pRH9e3Mg"
+liked_playlist = "4Ci0Y1XAzOboh3OA8KWhoZ"
+client_id_base64 = "M2ZmZGU0MzkzYzUxNDBmMzg2ZTE2YmE3YWRhY2NlNTY6NzE5ODAzOWFkMzcxNDc1MmE2YWNlN2QzYTM2YWZlOWM="

@@ -1,8 +1,21 @@
 import json
-import requests
 import secrets
+import requests
+import urllib.parse
 
-def find_songs(endpoint):
+def find_songs_name(endpoint):
+	tracks = []
+	query = f"https://api.spotify.com/v1/playlists/{endpoint}/tracks"
+	response = requests.get(query, headers={
+		"Content-type": "application/json",
+		"Authorization": f"Bearer {secrets.spotify_token}"
+	})
+	response_json = response.json()
+	for item in response_json["items"]:
+		tracks.append((urllib.parse.quote(item["track"]["name"]), urllib.parse.quote(item["track"]["artists"][0]["name"])))
+	return (tracks)
+
+def find_songs_uri(endpoint):
 	tracks = []
 	if (endpoint == "me"):
 		query = f"https://api.spotify.com/v1/me/tracks?limit=50"
@@ -12,7 +25,7 @@ def find_songs(endpoint):
 		print("Checking songs in custom playlist")
 	response = requests.get(query, headers={
 		"Content-type": "application/json",
-		"Authorization": f"Bearer {secrets.token}"
+		"Authorization": f"Bearer {secrets.spotify_token}"
 	})
 	response_json = response.json()
 	if (endpoint == "me"):
@@ -26,18 +39,17 @@ def find_songs(endpoint):
 def refresh():
 	response = requests.post("https://accounts.spotify.com/api/token",
 	headers={
-		"Authorization": f"Basic {secrets.client_id_base64}"
+		"Authorization": f"Basic {secrets.spotify_client_id_base64}"
 	}, data={
 		"grant_type": "refresh_token",
-		"refresh_token": secrets.refresh_token
+		"refresh_token": secrets.spotify_refresh_token
 	})
-	secrets.token = response.json()["access_token"]
+	secrets.spotify_token = response.json()["access_token"]
 
-def update(endpoint):
+def update_liked(endpoint):
 	i = 0
-	refresh()
-	tracks = find_songs("me")
-	l_track = find_songs(endpoint)
+	tracks = find_songs_uri("me")
+	l_track = find_songs_uri(endpoint)
 	print("Updating")
 	if (tracks[0] == l_track[0]):
 		return
@@ -52,5 +64,5 @@ def update(endpoint):
 	query = f"https://api.spotify.com/v1/playlists/{endpoint}/tracks/"
 	response = requests.post(query, headers={
 		"Content-type": "application/json",
-		"Authorization": f"Bearer {secrets.token}",
+		"Authorization": f"Bearer {secrets.spotify_token}",
 	}, data=body)

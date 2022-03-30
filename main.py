@@ -10,6 +10,7 @@ def main():
 	spotify_tracks = spotify.find_songs_name(secrets.spotify_shared_playlist)
 	deezer_tracks = deezer.find_songs(secrets.deezer_playlist_id)
 	deezer.update(spotify_tracks, secrets.deezer_playlist_id)
+	spotify.update(deezer_tracks, secrets.spotify_shared_playlist)
 
 if (__name__ == "__main__"):
 	main()

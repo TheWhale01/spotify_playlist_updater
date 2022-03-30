@@ -12,7 +12,7 @@ def find_songs_name(endpoint):
 	})
 	response_json = response.json()
 	for item in response_json["items"]:
-		tracks.append((urllib.parse.quote(item["track"]["name"]), urllib.parse.quote(item["track"]["artists"][0]["name"])))
+		tracks.append((item["track"]["name"].lower(), item["track"]["artists"][0]["name"].lower()))
 	return (tracks)
 
 def find_songs_uri(endpoint):
@@ -74,7 +74,7 @@ def add_songs(track):
 	})
 	response_json = response.json()
 	for item in response_json["tracks"]["items"]:
-		if (track[1].lower() == urllib.parse.quote(item["artists"][0]["name"].lower())):
+		if (track[1] == item["artists"][0]["name"].lower()):
 			body = json.dumps({"uris": [item["uri"]]})
 			query = f"https://api.spotify.com/v1/playlists/{secrets.spotify_shared_playlist}/tracks/"
 			response = requests.post(query, data=body, headers={
@@ -84,6 +84,7 @@ def add_songs(track):
 			break
 
 def update(deezer_tracks, endpoint):
+	print("Updating Spotify share playlist")
 	spotify_tracks = find_songs_name(endpoint)
 	for track in deezer_tracks:
 		if (track not in spotify_tracks):

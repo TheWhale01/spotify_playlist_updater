@@ -7,5 +7,5 @@ spotify_shared_playlist = "5ezjkh2YhO0AckVqan7GUq"
 
 deezer_token = "fraa5xyz6hRGcNLihePU1XmrGUIeJzOHW8ArUrXlE4WBhzPukK"
 deezer_secret = "8a31abe4ebfdda99a8f4dec2a31fb56f"
-deezer_playlist_id = "10182920302"
+deezer_playlist_id = ["10182920302"]
 deezer_redirect_uri = spotify_redirect_uri

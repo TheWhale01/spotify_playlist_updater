@@ -67,13 +67,15 @@ def update_liked(endpoint):
 		"Authorization": f"Bearer {secrets.spotify_token}",
 	}, data=body)
 
-def add_songs(track):
+def add_songs(track, spotify_tracks):
 	response = requests.get(f"https://api.spotify.com/v1/search?q={track[0]}&type=track", headers={
 		"Content-Type": "application/json",
 		"Authorization": f"Bearer {secrets.spotify_token}"
 	})
 	response_json = response.json()
 	for item in response_json["tracks"]["items"]:
+		if ((item["name"].lower(), item["artists"][0]["name"].lower()) in spotify_tracks):
+			return
 		if (track[1] == item["artists"][0]["name"].lower()):
 			body = json.dumps({"uris": [item["uri"]]})
 			query = f"https://api.spotify.com/v1/playlists/{secrets.spotify_shared_playlist}/tracks/"
@@ -88,4 +90,4 @@ def update(deezer_tracks, endpoint):
 	spotify_tracks = find_songs_name(endpoint)
 	for track in deezer_tracks:
 		if (track not in spotify_tracks):
-			add_songs(track)
+			add_songs(track, spotify_tracks)

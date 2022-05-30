@@ -1,11 +1,11 @@
-spotify_token = "BQDgIeNOwAIg2iPVy2_--CHaX5k4HwvNh9UXe8MIZYv4aJh5ZjjIQ-3-nZfsJ3xqzS6-2CWO94b4LiITTQo9cTBICn27_YKFRcM1DCNrGd6jIyQPNv1n4P7yiHJBXP7DhERiIgklqRCLJBJkSOraOmLioz6TahRPQBBQWfttUQdACXi397abnLsGJX4O1QHgTHjwxFeqOggf0MEONjfCvdaHFjTSUuOp3cGil_GjrnrvQQ"
+spotify_token = "spotify_token"
 spotify_redirect_uri = "https://github.com/TheWhale01"
-spotify_refresh_token = "AQCCVp3q2Y1TQO0SQedy1rpAQP5lp1GRAUi-OdCfdtF28U3VcXZicxwSG3Ykg8cMjX45YBqWhZ7IAbkTVmIL8JofThCxEc3Ras-aV0wYzL-6AgJfedk_foXYbe4pRH9e3Mg"
-spotify_liked_playlist = "4Ci0Y1XAzOboh3OA8KWhoZ"
-spotify_client_id_base64 = "M2ZmZGU0MzkzYzUxNDBmMzg2ZTE2YmE3YWRhY2NlNTY6NzE5ODAzOWFkMzcxNDc1MmE2YWNlN2QzYTM2YWZlOWM="
-spotify_shared_playlist = "5ezjkh2YhO0AckVqan7GUq"
+spotify_refresh_token = "spotify_refresh_token"
+spotify_liked_playlist = "liked_songs_playlist"
+spotify_client_id_base64 = "client_id"
+spotify_shared_playlist = "uri_for_shared_playlist"
 
-deezer_token = "fraa5xyz6hRGcNLihePU1XmrGUIeJzOHW8ArUrXlE4WBhzPukK"
-deezer_secret = "8a31abe4ebfdda99a8f4dec2a31fb56f"
-deezer_playlist_id = ["10182920302"]
+deezer_token = "deezer_token"
+deezer_secret = "secret_key_dezzer_API"
+deezer_playlist_id = ["deezer_playlists_ids"]
 deezer_redirect_uri = spotify_redirect_uri

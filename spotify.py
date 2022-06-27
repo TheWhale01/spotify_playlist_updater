@@ -8,7 +8,7 @@ def find_songs_name(endpoint):
 	query = f"https://api.spotify.com/v1/playlists/{endpoint}/tracks"
 	response = requests.get(query, headers={
 		"Content-type": "application/json",
-		"Authorization": f"Bearer {secrets.spotify_token}"
+		"Authorization": f"Bearer {secrets.tokens.spotify_token}"
 	})
 	response_json = response.json()
 	for item in response_json["items"]:
@@ -25,7 +25,7 @@ def find_songs_uri(endpoint):
 		print("Checking songs in custom playlist")
 	response = requests.get(query, headers={
 		"Content-type": "application/json",
-		"Authorization": f"Bearer {secrets.spotify_token}"
+		"Authorization": f"Bearer {secrets.tokens.spotify_token}"
 	})
 	response_json = response.json()
 	if (endpoint == "me"):
@@ -39,12 +39,12 @@ def find_songs_uri(endpoint):
 def refresh():
 	response = requests.post("https://accounts.spotify.com/api/token",
 	headers={
-		"Authorization": f"Basic {secrets.spotify_client_id_base64}"
+		"Authorization": f"Basic {secrets.tokens.spotify_client_id_base64}"
 	}, data={
 		"grant_type": "refresh_token",
-		"refresh_token": secrets.spotify_refresh_token
+		"refresh_token": secrets.tokens.spotify_refresh_token
 	})
-	secrets.spotify_token = response.json()["access_token"]
+	secrets.tokens.spotify_token = response.json()["access_token"]
 
 def update_liked(endpoint):
 	i = 0
@@ -64,13 +64,13 @@ def update_liked(endpoint):
 	query = f"https://api.spotify.com/v1/playlists/{endpoint}/tracks/"
 	response = requests.post(query, headers={
 		"Content-type": "application/json",
-		"Authorization": f"Bearer {secrets.spotify_token}",
+		"Authorization": f"Bearer {secrets.tokens.spotify_token}",
 	}, data=body)
 
 def add_songs(track, spotify_tracks):
 	response = requests.get(f"https://api.spotify.com/v1/search?q={track[0]}&type=track", headers={
 		"Content-Type": "application/json",
-		"Authorization": f"Bearer {secrets.spotify_token}"
+		"Authorization": f"Bearer {secrets.tokens.spotify_token}"
 	})
 	response_json = response.json()
 	for item in response_json["tracks"]["items"]:
@@ -78,10 +78,10 @@ def add_songs(track, spotify_tracks):
 			return
 		if (track[1] == item["artists"][0]["name"].lower()):
 			body = json.dumps({"uris": [item["uri"]]})
-			query = f"https://api.spotify.com/v1/playlists/{secrets.spotify_shared_playlist}/tracks/"
+			query = f"https://api.spotify.com/v1/playlists/{secrets.tokens.spotify_shared_playlist}/tracks/"
 			response = requests.post(query, data=body, headers={
 				"Content-type": "application/json",
-				"Authorization": f"Bearer {secrets.spotify_token}",
+				"Authorization": f"Bearer {secrets.tokens.spotify_token}",
 			})
 			break
 

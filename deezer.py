@@ -17,7 +17,7 @@ def add_song(track: tuple(), endpoint: str()):
 	response_json = response.json()
 	for item in response_json["data"]:
 		if (track[1] == item["artist"]["name"].lower()):
-			response = requests.post(f"https://api.deezer.com/playlist/{endpoint}/tracks?songs={item['id']}&access_token={secrets.deezer_token}")
+			response = requests.post(f"https://api.deezer.com/playlist/{endpoint}/tracks?songs={item['id']}&access_token={secrets.tokens.deezer_token}")
 			break 
 
 def update(spotify_tracks, endpoint):

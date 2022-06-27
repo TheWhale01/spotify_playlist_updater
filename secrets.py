@@ -29,17 +29,5 @@ class Tokens():
 			self.deezer_playlist_id = erase_charset("\n[]\"", lines[7])
 			self.deezer_playlist_id = self.deezer_playlist_id.split(", ")
 
-
-	def show_tokens(self):
-		print(f"spotify_token : {self.spotify_token}")
-		print(f"spotify_refresh_token : {self.spotify_refresh_token}")
-		print(f"spotify_liked_playlist : {self.spotify_liked_playlist}")
-		print(f"spotify_client_id_base64 : {self.spotify_client_id_base64}")
-		print(f"spotify_shared_playlist : {self.spotify_shared_playlist}")
-		print(f"deezer_token : {self.deezer_token}")
-		print(f"deezer_secret : {self.deezer_secret}")
-		print(f"deezer_playlist_id : {self.deezer_playlist_id}")
-
 tokens = Tokens()
 tokens.get_token(".secrets.txt")
-tokens.show_tokens()
